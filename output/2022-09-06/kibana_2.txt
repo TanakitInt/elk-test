@@ -1,0 +1,2 @@
+Password for the [elastic] user successfully reset.
+New value: yV18Y-NQ=Vpv9efRutl=
