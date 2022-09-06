@@ -104,9 +104,9 @@
 
 - pipeline.id: access_logs
   #pipeline.batch.size: 125
-  path.config: "C:/ELK/logstash-8.4.0/config/pipeline/access.conf"
+  path.config: "C:/ELK/logstash-8.4.0/config/pipelines/access.conf"
 
 - pipeline.id: error_logs
   pipeline.batch.size: 1
-  path.config: "C:/ELK/logstash-8.4.0/config/pipeline/errors.conf"
+  path.config: "C:/ELK/logstash-8.4.0/config/pipelines/errors.conf"
 
