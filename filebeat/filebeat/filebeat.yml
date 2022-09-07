@@ -25,11 +25,12 @@ filebeat.inputs:
   id: my-filestream-id
 
   # Change to true to enable this input configuration.
-  enabled: false
+  enabled: true
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/*.log
+    - C:\ELK\event_log\apache_access.log
+    #- /var/log/*.log
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -46,13 +47,20 @@ filebeat.inputs:
 
   # Exclude files. A list of regular expressions to match. Filebeat drops the files that
   # are matching any regular expression from the list. By default, no files are dropped.
-  #prospector.scanner.exclude_files: ['.gz$']
+  prospector.scanner.exclude_files: ['.gz$']
 
   # Optional additional fields. These fields can be freely picked
   # to add additional information to the crawled log files for filtering
   #fields:
   #  level: debug
   #  review: 1
+
+  fields:
+    event:
+      module: apache
+      dataset: "apache.access"
+
+  fields_under_root: true
 
 # ============================== Filebeat modules ==============================
 
