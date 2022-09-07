@@ -1,8 +1,9 @@
 #------------------------ beats ------------------------# 
 
-.\filebeat.exe -e
 .\filebeat modules enable apache
-.\filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+.\filebeat.exe -e
+.\filebeat.exe setup --index-management
+.\filebeat.exe setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
 
 #------------------------ logstash ------------------------#
 
