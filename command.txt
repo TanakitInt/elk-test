@@ -1,0 +1,19 @@
+#------------------------ beats ------------------------# 
+
+.\filebeat.exe -e
+.\filebeat modules enable apache
+.\filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+
+#------------------------ logstash ------------------------#
+
+.\bin\logstash.bat
+.\bin\logstash -f .\config\pipelines\access.conf --config.reload.automatic
+rm .\data\plugins\inputs\file\.sincedb_*
+
+#------------------------ elasticsearch ------------------------#
+
+.\bin\elasticsearch.bat
+
+#------------------------ kibana ------------------------#
+
+.\bin\kibana.bat
