@@ -102,5 +102,8 @@
 #
 #   path.dead_letter_queue:
 
-- pipeline.id: access_logs
-  path.config: "C:/ELK/logstash-8.4.0/config/pipelines/access.conf"
+- pipeline.id: apache_logs
+  path.config: "C:/ELK/logstash-8.4.0/config/pipelines/apache.conf"
+
+- pipeline.id: java_logs
+  path.config: "C:/ELK/logstash-8.4.0/config/pipelines/java-errors.conf"
