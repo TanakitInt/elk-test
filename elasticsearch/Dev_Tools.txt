@@ -119,4 +119,13 @@ PUT /products/_doc/100
   "in_stock": 4
 }
 
+DELETE /products/_doc/102
+
+POST /products/_update/100?if_primary_term=1&if_seq_no=7988
+{
+  "doc":
+  {
+    "in_stock": 123
+  }
+}
 
