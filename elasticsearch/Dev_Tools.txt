@@ -1,0 +1,36 @@
+GET /_cat/nodes?v
+
+GET /_cat/allocation?v
+
+GET /_cat/shards?v
+
+GET /_cat/indices?v
+
+GET /_cat/indices/*?v=true&h=i,sth
+
+PUT <index_name>/_settings
+{
+  "settings": {
+    "index.routing.allocation.require._name": "<node_name>"
+  }
+}
+
+POST /<index_name>/_freeze
+
+POST /<index_name>/_unfreeze
+
+GET /_cluster/health
+
+PUT /<index_name>
+
+PUT /products
+{
+  "settings": 
+  {
+    "number_of_shards": 2,
+    "number_of_replicas": 2
+  }
+}
+
+DELETE /<index_name>
+
