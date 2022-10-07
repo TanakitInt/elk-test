@@ -34,3 +34,89 @@ PUT /products
 
 DELETE /<index_name>
 
+POST /products/_doc
+{
+  "name": "Coffee Maker",
+  "price": 64,
+  "in_stock": 10
+}
+
+PUT /products/_doc/100
+{
+  "name": "Toaster",
+  "price": 49,
+  "in_stock": 4
+}
+
+GET /products/_doc/100
+
+POST /products/_update/100
+{
+  "doc":
+  {
+    "tags": ["eletronics"]
+  }
+}
+
+POST /products/_update/100
+{
+  "script": 
+  {
+    "source": "ctx._source.in_stock--"
+  }
+}
+
+POST /products/_update/100
+{
+  "script": 
+  {
+    "source": "ctx._source.in_stock++"
+  }
+}
+
+POST /products/_update/100
+{
+  "script": 
+  {
+    "source": "ctx._source.in_stock = 10"
+  }
+}
+
+POST /products/_update/100
+{
+  "script": 
+  {
+    "source": "ctx._source.in_stock -= params.quantity",
+    "params": 
+    {
+      "quantity": 4
+    }
+  }
+}
+
+GET /products/_doc/101
+
+POST /products/_update/101
+{
+  "script": 
+  {
+    "source": "ctx._source.in_stock++"
+  },
+  "upsert":
+  {
+    "name": "Blender",
+    "price": 399,
+    "in_stock": 5
+  }
+}
+
+GET /products/_doc/100
+
+PUT /products/_doc/100
+{
+  "name": "Toaster",
+  "price": 79,
+  "in_stock": 4
+}
+
+
