@@ -129,3 +129,45 @@ POST /products/_update/100?if_primary_term=1&if_seq_no=7988
   }
 }
 
+POST /products/_update_by_query
+{
+  "script":
+  {
+    "source": "ctx._source.in_stock--"
+  },
+  "query": 
+  {
+    "match_all": {}
+  }
+}
+
+POST /products/_delete_by_query
+{
+  "query":
+  {
+    "match_all":
+    {
+      
+    }
+  }
+}
+
+POST /_bulk
+{ "index": {"_index": "products", "_id": 200 }}
+{ "name": "Espresso Machine", "price": 199, "in_stock": 5 }
+{ "create": { "_index": "products", "_id": 201 }}
+{ "name": "Milk Frother", "price": 149, "in_stock": 14 }
+
+GET /products/_search
+{
+  "query": 
+  {
+    "match_all": { }
+  }
+}
+
+POST /products/_bulk
+{ "update": { "_id": 201 } }
+{ "doc": { "price": 129 } }
+{ "delete": { "_id": 200 } }
+
