@@ -18,3 +18,87 @@ POST /_analyze
   "analyzer": "keyword"
 }
 
+PUT /coercion_test/_doc/1
+{
+  "price": 7.4
+}
+
+PUT /coercion_test/_doc/2
+{
+  "price": "7.4"
+}
+
+PUT /coercion_test/_doc/3
+{
+  "price": "7.4m"
+}
+
+GET /coercion_test/_doc/2
+
+POST /_analyze
+{
+  "text": ["string are simply", "merge together"],
+  "analyzer": "standard"
+}
+
+PUT /reviews
+{
+  "mappings":
+  {
+    "properties":
+    {
+      "rating": { "type": "float" },
+      "content": { "type": "text" },
+      "product_id": { "type": "integer" },
+      "author":
+      {
+        "properties":
+        {
+          "first_name": { "type": "text" },
+          "last_name": { "type": "text" },
+          "email": { "type": "keyword" }
+        }
+      }
+    }
+  }
+}
+
+PUT /reviews/_doc/1
+{
+  "rating": 5.0,
+  "content": "Yes!",
+  "product_id": 123,
+  "author":
+    {
+      "first_name": "Yee",
+      "last_name": "Dino",
+      "email": "Yedino@example.com"
+    }
+}
+
+GET /reviews/_mapping
+
+GET /reviews/_mapping/field/content
+
+GET /reviews/_mapping/field/author.email
+
+POST /_reindex
+{
+  "source":
+  {
+    "index": "reviews"
+  },
+  "dest":
+  {
+    "index": "reviews_new"
+  }
+}
+
+GET /reviews_new/_search
+
+
+
+
+
+
+
