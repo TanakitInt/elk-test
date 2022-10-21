@@ -96,7 +96,34 @@ POST /_reindex
 
 GET /reviews_new/_search
 
+POST /_reindex
+{
+  "source":
+  {
+    "index": "reviews"
+  },
+  "dest":
+  {
+    "index": "reviews_new"
+  }
+}
 
+POST /_analyze
+{
+  "text": "2 guys walk into a    bar, but the third... DUCK! :-)",
+  "analyzer": "standard"
+}
+
+GET /<index>/default/<doc_id>/_explain
+{
+  “query”:
+    {
+      “term”:
+        {
+         “name”: “lobster”
+        }
+    }
+}
 
 
 
